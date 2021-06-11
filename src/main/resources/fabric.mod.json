@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "cardboardbox",
+  "version": "${version}",
+
+  "name": "CardBoardBox",
+  "description": "Adds a craftable Cardboard Box that acts as portable-storage.",
+  "authors": [
+    "SkullFirez"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+
+  "license": "CC0-1.0",
+  "icon": "assets/cardboardbox/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.skullfirez.cardboardbox.CardboardBox"
+    ],
+    "client": [
+      "net.skullfirez.cardboardbox.CardboardBoxClient"
+    ]
+  },
+  "mixins": [
+    "cardboardbox.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}

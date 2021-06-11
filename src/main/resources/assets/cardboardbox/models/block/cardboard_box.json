@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "cardboardbox:block/cardboard_box",
+    "down": "cardboardbox:block/cardboard_box",
+    "up": "cardboardbox:block/cardboard_box_top",
+    "north": "cardboardbox:block/cardboard_box_side",
+    "east": "cardboardbox:block/cardboard_box",
+    "south": "cardboardbox:block/cardboard_box_side",
+    "west": "cardboardbox:block/cardboard_box"
+  }
+}
