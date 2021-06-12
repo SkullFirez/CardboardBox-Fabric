@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#P#",
+    "PBP",
+    "#P#"
+  ],
+  "key": {
+    "#": {
+      "item": "cardboardbox:sawdust"
+    },
+    "B": {
+      "item": "minecraft:slime_ball"
+    },
+    "P": {
+      "item": "minecraft:paper"
+    }
+  },
+  "result": {
+    "item": "cardboardbox:small_cardboard_box"
+  }
+}
