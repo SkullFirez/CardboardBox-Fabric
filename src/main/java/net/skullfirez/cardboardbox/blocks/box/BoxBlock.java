@@ -3,6 +3,7 @@ package net.skullfirez.cardboardbox.blocks.box;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.client.item.TooltipContext;
@@ -15,6 +16,7 @@ import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandler;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
@@ -32,6 +34,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 
 public class BoxBlock extends BlockWithEntity {
 
@@ -124,6 +127,40 @@ public class BoxBlock extends BlockWithEntity {
         }
         super.onBreak(world, pos, state, player);
     }
+
+    @Override
+    public boolean hasRandomTicks(BlockState state) {
+        return true;
+    }
+
+    @Override
+    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+        BlockEntity blockEntity = world.getBlockEntity(pos);
+        if (blockEntity instanceof BoxBlockEntity boxBlockEntity) {
+            //if (!world.isClient && player.isCreative() && !boxBlockEntity.isEmpty()) {
+            if (!world.isClient && world.hasRain(pos.up()) && random.nextFloat() < 0.1F) {
+                ItemStack itemStack = asItem().getDefaultStack();
+                NbtCompound nbtCompound = boxBlockEntity.writeInventoryNbt(new NbtCompound());
+                if (!nbtCompound.isEmpty()) {
+                    itemStack.putSubTag("BlockEntityTag", nbtCompound);
+                }
+
+                if (boxBlockEntity.hasCustomName()) {
+                    itemStack.setCustomName(boxBlockEntity.getCustomName());
+                }
+
+                ItemEntity itemEntity = new ItemEntity(world, (double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, itemStack);
+                itemEntity.setToDefaultPickupDelay();
+                world.spawnEntity(itemEntity);
+                world.setBlockState(pos, Blocks.AIR.getDefaultState());
+            }/* else {
+                boxBlockEntity.checkLootInteraction(player);
+            }*/
+        }
+        super.randomTick(state, world, pos, random);
+    }
+
+
 
     @Override
     public List<ItemStack> getDroppedStacks(BlockState state, net.minecraft.loot.context.LootContext.Builder builder) {

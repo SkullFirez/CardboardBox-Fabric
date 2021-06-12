@@ -6,11 +6,13 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ScreenHandler;
+import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.screen.slot.Slot;
+import net.skullfirez.cardboardbox.blocks.smallbox.SmallBoxScreenHandler;
 import net.skullfirez.cardboardbox.setup.Registration;
 
 public class BoxScreenHandler extends ScreenHandler {
-    private final Inventory inventory;
+    private Inventory inventory;
 
     //This constructor gets called on the client when the server wants it to open the screenHandler,
     //The client will call the other constructor with an empty Inventory and the screenHandler will automatically
@@ -52,6 +54,10 @@ public class BoxScreenHandler extends ScreenHandler {
             this.addSlot(new Slot(playerInventory, m, 8 + m * 18, 150));
         }
 
+    }
+
+    public BoxScreenHandler(ScreenHandlerType<SmallBoxScreenHandler> smallCardboardBoxScreenHandler, int syncId) {
+        super(smallCardboardBoxScreenHandler, syncId);
     }
 
     @Override

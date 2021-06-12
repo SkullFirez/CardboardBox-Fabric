@@ -1,5 +1,8 @@
 {
   "block.cardboardbox.cardboard_box": "Cardboard Box",
+  "block.cardboardbox.small_cardboard_box": "Small Cardboard Box",
   "container.cardboard_box.more": "and %s more...",
-  "item.cardboardbox.sawdust": "Sawdust"
+  "item.cardboardbox.sawdust": "Sawdust",
+  "item.cardboardbox.packing_peanut": "Packing Peanut",
+  "item.cardboardbox.packing_peanut.desc": "Please handle with care!"
 }

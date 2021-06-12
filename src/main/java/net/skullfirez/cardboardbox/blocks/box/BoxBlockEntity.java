@@ -1,6 +1,7 @@
 package net.skullfirez.cardboardbox.blocks.box;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
@@ -12,6 +13,7 @@ import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
+import net.skullfirez.cardboardbox.blocks.smallbox.SmallBoxBlockEntity;
 import net.skullfirez.cardboardbox.setup.Registration;
 import net.skullfirez.cardboardbox.util.ImplementedInventory;
 
@@ -20,6 +22,10 @@ public class BoxBlockEntity extends LootableContainerBlockEntity implements Name
 
     public BoxBlockEntity(BlockPos pos, BlockState state) {
         super(Registration.CARDBOARD_BOX_ENTITY, pos, state);
+    }
+
+    public BoxBlockEntity(BlockEntityType<SmallBoxBlockEntity> smallCardboardBoxEntity, BlockPos pos, BlockState state) {
+        super(smallCardboardBoxEntity, pos, state);
     }
 
     @Override
@@ -31,20 +37,6 @@ public class BoxBlockEntity extends LootableContainerBlockEntity implements Name
     public int size() {
         return this.inventory.size();
     }
-
-    /*
-    @Override
-    public ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
-        //We provide *this* to the screenHandler as our class Implements Inventory
-        //Only the Server has the Inventory at the start, this will be synced to the client in the ScreenHandler
-        return new BoxScreenHandler(syncId, playerInventory, this);
-    }
-
-    @Override
-    public Text getDisplayName() {
-        return new TranslatableText(getCachedState().getBlock().getTranslationKey());
-    }
-    */
 
     @Override
     public void readNbt(NbtCompound tag) {
