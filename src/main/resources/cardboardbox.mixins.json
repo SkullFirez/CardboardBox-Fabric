@@ -4,10 +4,10 @@
   "package": "net.skullfirez.cardboardbox.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
+    "AxeStrippedAccessor"
   ],
   "client": [
-    "CardboardBoxMixin",
-    "AxeStrippedAccessor"
+    "CardboardBoxMixin"
   ],
   "injectors": {
     "defaultRequire": 1

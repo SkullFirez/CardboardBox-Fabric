@@ -5,7 +5,6 @@ import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.ItemEntity;
-import net.minecraft.tag.BlockTags;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.skullfirez.cardboardbox.mixin.AxeStrippedAccessor;
